@@ -367,7 +367,11 @@ class _CurrencyConvertorMaterialPageState
 
                         try {
                           rate = await fetchExchangeRate(selectedValue);
-                          final result = amount * rate;
+                          final reverse = 1 / rate;
+                          final result =
+                              isReversed == false
+                                  ? amount * rate
+                                  : amount * reverse;
                           resultController.text =
                               isReversed == false
                                   ? '${result.toStringAsFixed(2)} INR'
